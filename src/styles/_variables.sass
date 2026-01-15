@@ -1,0 +1,67 @@
+// 変数定義
+$font-logo: 'Playfair Display', serif
+$primary-blue: #5c7cfa
+$primary-pink: #f06595
+$navy-dark: #1a2a44
+$text-navy: #3a506b
+
+.logo-text
+  font-family: $font-logo
+  letter-spacing: 0.1em
+
+.hero-section
+  height: 80vh
+  background: linear-gradient(135deg, #e3f2fd 0%, #fce4ec 100%)
+  position: relative
+  overflow: hidden
+
+.bg-light-grad
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%)
+
+.section-title
+  font-family: $font-logo
+  font-size: 1.5rem
+  letter-spacing: 0.3em
+  margin-bottom: 2rem
+  color: $text-navy
+
+// ボタン共通設定
+%btn-gradient
+  background: linear-gradient(45deg, $primary-blue, $primary-pink) !important
+  color: white !important
+
+.grad-btn
+  @extend %btn-gradient
+  font-weight: bold
+
+.grad-btn-lg
+  @extend %btn-gradient
+  padding: 0 40px !important
+  letter-spacing: 0.1em
+
+// カード & エフェクト
+.menu-card
+  border-radius: 12px
+  overflow: hidden
+  transition: transform 0.3s ease
+  &:hover
+    transform: translateY(-5px)
+
+.coming-soon-overlay
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: rgba(255, 255, 255, 0.6)
+  backdrop-filter: blur(4px)
+  color: $primary-pink
+  font-weight: bold
+  font-size: 1.2rem
+
+// Footer周り
+.bg-navy
+  background-color: $navy-dark
+
+.tracking-widest
+  letter-spacing: 0.5em

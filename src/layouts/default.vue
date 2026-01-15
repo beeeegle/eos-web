@@ -1,5 +1,6 @@
 <template>
-  <v-app v-scroll="onScroll"> <AppHeader />
+  <v-app v-scroll="onScroll">
+    <app-header />
 
     <v-main>
       <v-container class="px-3 px-md-4 py-4 responsive-container">
