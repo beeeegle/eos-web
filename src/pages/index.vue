@@ -10,21 +10,23 @@
   </section>
 
   <!-- Concept Section -->
-  <v-container class="py-16 text-center">
-    <h2 class="section-title">CONCEPT</h2>
-    <v-divider class="mx-auto mt-n4 mb-6" color="primary-blue" thickness="2" width="40" />
-    <v-row justify="center">
-      <v-col cols="12" md="8">
-        <p class="text-body-1 leading-loose">
-          Eosは、光と水、そして癒やしをテーマにした総合美容サロンです。<br>
-          24時間忙しく活躍する女性たちへ、本来の輝きを取り戻すための特別な空間を提供します。
-        </p>
-      </v-col>
-    </v-row>
-  </v-container>
+  <section id="concept" class="py-16">
+    <v-container class="py-16 text-center">
+      <h2 class="section-title">CONCEPT</h2>
+      <v-divider class="mx-auto mt-n4 mb-6" color="primary-blue" thickness="2" width="40" />
+      <v-row justify="center">
+        <v-col cols="12" md="8">
+          <p class="text-body-1 leading-loose">
+            Eosは、光と水、そして癒やしをテーマにした総合美容サロンです。<br>
+            24時間忙しく活躍する女性たちへ、本来の輝きを取り戻すための特別な空間を提供します。
+          </p>
+        </v-col>
+      </v-row>
+    </v-container>
+  </section>
 
   <!-- Menu & Facility Section -->
-  <section class="bg-light-grad py-16">
+  <section id="menu" class="bg-light-grad py-16">
     <v-container>
       <h2 class="section-title text-center mb-10">MENU & FACILITY</h2>
       <v-divider class="mx-auto mt-n4 mb-6" color="primary-blue" thickness="2" width="40" />
@@ -54,217 +56,221 @@
   </section>
 
   <!-- Price List Section -->
-  <v-container id="price" class="py-16 bg-light-grad" fluid>
-    <v-container>
-      <v-row class="mb-12" justify="center">
-        <v-col class="text-center" cols="12">
-          <h2 class="section-title logo-text text-uppercase">Price List</h2>
-          <v-divider class="mx-auto mt-n4 mb-6" color="primary-blue" thickness="2" width="40" />
-          <p class="text-subtitle-1 text-grey-darken-2 tracking-widest">極上のケアを、明快な価格で</p>
-        </v-col>
-      </v-row>
+  <section id="price" class="py-16">
+    <v-container class="py-16 bg-light-grad" fluid>
+      <v-container>
+        <v-row class="mb-12" justify="center">
+          <v-col class="text-center" cols="12">
+            <h2 class="section-title logo-text text-uppercase">Price List</h2>
+            <v-divider class="mx-auto mt-n4 mb-6" color="primary-blue" thickness="2" width="40" />
+            <p class="text-subtitle-1 text-grey-darken-2 tracking-widest">極上のケアを、明快な価格で</p>
+          </v-col>
+        </v-row>
 
-      <v-row>
-        <v-col v-for="(plan, index) in pricePlans" :key="index" cols="12" md="4">
-          <v-card
-            class="menu-card mx-auto h-100 d-flex flex-column border-0"
-            elevation="10"
-          >
-            <v-sheet
-              class="grad-btn pa-8 text-center"
-              style="min-height: 140px; display: flex; flex-direction: column; justify-content: center;"
+        <v-row>
+          <v-col v-for="(plan, index) in pricePlans" :key="index" cols="12" md="4">
+            <v-card
+              class="menu-card mx-auto h-100 d-flex flex-column border-0"
+              elevation="10"
             >
-              <div class="logo-text text-h5 font-weight-bold mb-1">{{ plan.title }}</div>
-              <div class="text-caption opacity-80 tracking-widest">{{ plan.subtitle }}</div>
-            </v-sheet>
-
-            <v-card-text class="pa-8 text-center flex-grow-1">
-              <div class="mb-6">
-                <span class="text-h4 font-weight-bold" style="color: #3a506b;">
-                  ¥{{ plan.price.toLocaleString() }}
-                </span>
-                <span class="text-body-2 text-grey-darken-1"> / {{ plan.unit }}</span>
-              </div>
-
-              <v-divider class="mb-6" />
-
-              <v-list class="text-left bg-transparent" density="compact">
-                <v-list-item v-for="(feature, fIndex) in plan.features" :key="fIndex" class="px-0">
-                  <template #prepend>
-                    <v-icon class="mr-2" color="#5c7cfa" icon="mdi-check-circle-outline" size="small" />
-                  </template>
-                  <v-list-item-title class="text-body-2 text-grey-darken-3">{{ feature }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-card-text>
-
-            <v-card-actions class="pa-8 pt-0">
-              <v-btn
-                block
-                class="grad-btn-lg rounded-pill font-weight-bold"
-                elevation="2"
-                height="54"
+              <v-sheet
+                class="grad-btn pa-8 text-center"
+                style="min-height: 140px; display: flex; flex-direction: column; justify-content: center;"
               >
-                RESERVE
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+                <div class="logo-text text-h5 font-weight-bold mb-1">{{ plan.title }}</div>
+                <div class="text-caption opacity-80 tracking-widest">{{ plan.subtitle }}</div>
+              </v-sheet>
+
+              <v-card-text class="pa-8 text-center flex-grow-1">
+                <div class="mb-6">
+                  <span class="text-h4 font-weight-bold" style="color: #3a506b;">
+                    ¥{{ plan.price.toLocaleString() }}
+                  </span>
+                  <span class="text-body-2 text-grey-darken-1"> / {{ plan.unit }}</span>
+                </div>
+
+                <v-divider class="mb-6" />
+
+                <v-list class="text-left bg-transparent" density="compact">
+                  <v-list-item v-for="(feature, fIndex) in plan.features" :key="fIndex" class="px-0">
+                    <template #prepend>
+                      <v-icon class="mr-2" color="#5c7cfa" icon="mdi-check-circle-outline" size="small" />
+                    </template>
+                    <v-list-item-title class="text-body-2 text-grey-darken-3">{{ feature }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-card-text>
+
+              <v-card-actions class="pa-8 pt-0">
+                <v-btn
+                  block
+                  class="grad-btn-lg rounded-pill font-weight-bold"
+                  elevation="2"
+                  height="54"
+                >
+                  RESERVE
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
-  </v-container>
+  </section>
 
   <!-- Access Section -->
-  <v-container id="access" class="py-16 bg-navy text-white" fluid>
-    <v-container>
-      <v-row class="mb-12" justify="center">
-        <v-col class="text-center" cols="12">
-          <h2 class="section-title logo-text text-uppercase text-white">Access</h2>
-          <v-divider class="mx-auto mt-n4 mb-6" color="primary-pink" thickness="2" width="40" />
-          <p class="text-subtitle-1 opacity-80 tracking-widest">横浜駅徒歩5分のプライベート空間</p>
-        </v-col>
-      </v-row>
+  <section id="access" class="py-16">
+    <v-container class="py-16 bg-navy text-white" fluid>
+      <v-container>
+        <v-row class="mb-12" justify="center">
+          <v-col class="text-center" cols="12">
+            <h2 class="section-title logo-text text-uppercase text-white">Access</h2>
+            <v-divider class="mx-auto mt-n4 mb-6" color="primary-pink" thickness="2" width="40" />
+            <p class="text-subtitle-1 opacity-80 tracking-widest">横浜駅徒歩5分のプライベート空間</p>
+          </v-col>
+        </v-row>
 
-      <v-row align="center">
-        <v-col class="pa-8" cols="12" md="5">
-          <div class="mb-10">
-            <h3 class="logo-text text-h4 mb-2">Eos Yokohama</h3>
-            <p class="text-caption tracking-widest opacity-60 mb-6">セルフ美容サロン イオス 横浜店</p>
+        <v-row align="center">
+          <v-col class="pa-8" cols="12" md="5">
+            <div class="mb-10">
+              <h3 class="logo-text text-h4 mb-2">Eos Yokohama</h3>
+              <p class="text-caption tracking-widest opacity-60 mb-6">セルフ美容サロン イオス 横浜店</p>
 
-            <v-list bg-transparent class="text-white">
-              <v-list-item class="px-0 mb-4" prepend-icon="mdi-map-marker-outline">
-                <v-list-item-title class="font-weight-bold mb-1">ADDRESS</v-list-item-title>
-                <v-list-item-subtitle class="text-white opacity-80 text-wrap">
-                  〒220-0004 神奈川県横浜市西区北幸２丁目５−１３ 西口幸ビル 5F
-                </v-list-item-subtitle>
-              </v-list-item>
+              <v-list bg-transparent class="text-white">
+                <v-list-item class="px-0 mb-4" prepend-icon="mdi-map-marker-outline">
+                  <v-list-item-title class="font-weight-bold mb-1">ADDRESS</v-list-item-title>
+                  <v-list-item-subtitle class="text-white opacity-80 text-wrap">
+                    〒220-0004 神奈川県横浜市西区北幸２丁目５−１３ 西口幸ビル 5F
+                  </v-list-item-subtitle>
+                </v-list-item>
 
-              <v-list-item class="px-0 mb-4" prepend-icon="mdi-clock-outline">
-                <v-list-item-title class="font-weight-bold mb-1">OPENING HOURS</v-list-item-title>
-                <v-list-item-subtitle class="text-white opacity-80">
-                  11:00 〜 20:30（最終受付 20:00）
-                </v-list-item-subtitle>
-              </v-list-item>
+                <v-list-item class="px-0 mb-4" prepend-icon="mdi-clock-outline">
+                  <v-list-item-title class="font-weight-bold mb-1">OPENING HOURS</v-list-item-title>
+                  <v-list-item-subtitle class="text-white opacity-80">
+                    11:00 〜 20:30（最終受付 20:00）
+                  </v-list-item-subtitle>
+                </v-list-item>
 
-              <v-list-item class="px-0 mb-4" prepend-icon="mdi-phone-outline">
-                <v-list-item-title class="font-weight-bold mb-1">CONTACT</v-list-item-title>
-                <v-list-item-subtitle class="text-white opacity-80">
-                  045-534-8879
-                </v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </div>
+                <v-list-item class="px-0 mb-4" prepend-icon="mdi-phone-outline">
+                  <v-list-item-title class="font-weight-bold mb-1">CONTACT</v-list-item-title>
+                  <v-list-item-subtitle class="text-white opacity-80">
+                    045-534-8879
+                  </v-list-item-subtitle>
+                </v-list-item>
+              </v-list>
+            </div>
 
-          <v-btn
-            block
-            class="grad-btn-lg rounded-pill"
-            height="54"
-            href="https://maps.app.goo.gl/3wG8NnU6wP7zH9y96"
-            target="_blank"
-          >
-            <v-icon icon="mdi-directions" start />
-            GOOGLE MAPSで見る
-          </v-btn>
-        </v-col>
+            <v-btn
+              block
+              class="grad-btn-lg rounded-pill"
+              height="54"
+              href="https://maps.app.goo.gl/3wG8NnU6wP7zH9y96"
+              target="_blank"
+            >
+              <v-icon icon="mdi-directions" start />
+              GOOGLE MAPSで見る
+            </v-btn>
+          </v-col>
 
-        <v-col class="pa-0 pa-md-4" cols="12" md="7">
-          <v-card class="map-container rounded-xl overflow-hidden" elevation="12">
-            <iframe
-              allowfullscreen=""
-              height="450"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3249.4678142324314!2d139.6145646763435!3d35.46741384133496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185d4c605cd65f%3A0x31ffb75fc8dcda01!2z6Ieq55Sf6Ki66YGp5pyf56S-IOWcs-W5vOOCueODreODvOODoA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
-              style="border:0;"
-              width="100%"
-            />
-          </v-card>
-        </v-col>
-      </v-row>
+          <v-col class="pa-0 pa-md-4" cols="12" md="7">
+            <v-card class="map-container rounded-xl overflow-hidden" elevation="12">
+              <iframe
+                allowfullscreen=""
+                height="450"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3249.4678142324314!2d139.6145646763435!3d35.46741384133496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185d4c605cd65f%3A0x31ffb75fc8dcda01!2z6Ieq55Sf6Ki66YGp5pyf56S-IOWcs-W5vOOCueODreODvOODoA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                style="border:0;"
+                width="100%"
+              />
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
-  </v-container>
 
-  <v-container id="contact" class="py-16 bg-light-grad" fluid>
-    <v-container>
-      <v-row>
-        <v-col class="d-flex flex-column justify-center pa-8" cols="12" md="5">
-          <h2 class="section-title logo-text text-uppercase mb-4">Contact</h2>
-          <p class="text-h5 font-weight-bold mb-4" style="color: #3a506b;">
-            光を纏う準備は、<br>できていますか？
-          </p>
-          <p class="text-body-2 text-grey-darken-2 mb-6 tracking-widest leading-loose">
-            サービスに関するご質問や、<br>
-            取材のご依頼、提携のご相談など、<br>
-            お気軽にお問い合わせください。
-          </p>
-          <div class="d-flex align-center text-caption text-grey">
-            <v-icon class="mr-2" icon="mdi-information-outline" />
-            通常2営業日以内にご返信いたします。
-          </div>
-        </v-col>
+    <v-container id="contact" class="py-16 bg-light-grad" fluid>
+      <v-container>
+        <v-row>
+          <v-col class="d-flex flex-column justify-center pa-8" cols="12" md="5">
+            <h2 class="section-title logo-text text-uppercase mb-4">Contact</h2>
+            <p class="text-h5 font-weight-bold mb-4" style="color: #3a506b;">
+              光を纏う準備は、<br>できていますか？
+            </p>
+            <p class="text-body-2 text-grey-darken-2 mb-6 tracking-widest leading-loose">
+              サービスに関するご質問や、<br>
+              取材のご依頼、提携のご相談など、<br>
+              お気軽にお問い合わせください。
+            </p>
+            <div class="d-flex align-center text-caption text-grey">
+              <v-icon class="mr-2" icon="mdi-information-outline" />
+              通常2営業日以内にご返信いたします。
+            </div>
+          </v-col>
 
-        <!-- Contact Form -->
-        <v-col cols="12" md="7">
-          <v-card class="pa-8 rounded-xl border-0" elevation="10">
-            <v-form ref="form">
-              <v-row gutter="20">
-                <v-col cols="12" sm="6">
-                  <v-text-field
-                    class="mb-4"
-                    color="primary-blue"
-                    hide-details="auto"
-                    label="Name"
-                    placeholder="お名前"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-text-field
-                    class="mb-4"
-                    color="primary-blue"
-                    hide-details="auto"
-                    label="Email"
-                    placeholder="メールアドレス"
-                    variant="outlined"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12">
-                  <v-select
-                    class="mb-4"
-                    color="primary-blue"
-                    hide-details="auto"
-                    :items="['ご予約について', 'メニューに関するご質問', '取材・その他']"
-                    label="Subject"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12">
-                  <v-textarea
-                    class="mb-6"
-                    color="primary-blue"
-                    hide-details="auto"
-                    label="Message"
-                    placeholder="お問い合わせ内容をご入力ください"
-                    rows="4"
-                    variant="outlined"
-                  />
-                </v-col>
-                <v-col cols="12">
-                  <v-btn
-                    block
-                    class="grad-btn-lg rounded-pill font-weight-bold"
-                    height="60"
-                  >
-                    SEND MESSAGE
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-form>
-          </v-card>
-        </v-col>
-      </v-row>
+          <!-- Contact Form -->
+          <v-col cols="12" md="7">
+            <v-card class="pa-8 rounded-xl border-0" elevation="10">
+              <v-form ref="form">
+                <v-row gutter="20">
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      class="mb-4"
+                      color="primary-blue"
+                      hide-details="auto"
+                      label="Name"
+                      placeholder="お名前"
+                      variant="outlined"
+                    />
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      class="mb-4"
+                      color="primary-blue"
+                      hide-details="auto"
+                      label="Email"
+                      placeholder="メールアドレス"
+                      variant="outlined"
+                    />
+                  </v-col>
+                  <v-col cols="12">
+                    <v-select
+                      class="mb-4"
+                      color="primary-blue"
+                      hide-details="auto"
+                      :items="['ご予約について', 'メニューに関するご質問', '取材・その他']"
+                      label="Subject"
+                      variant="outlined"
+                    />
+                  </v-col>
+                  <v-col cols="12">
+                    <v-textarea
+                      class="mb-6"
+                      color="primary-blue"
+                      hide-details="auto"
+                      label="Message"
+                      placeholder="お問い合わせ内容をご入力ください"
+                      rows="4"
+                      variant="outlined"
+                    />
+                  </v-col>
+                  <v-col cols="12">
+                    <v-btn
+                      block
+                      class="grad-btn-lg rounded-pill font-weight-bold"
+                      height="60"
+                    >
+                      SEND MESSAGE
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
-  </v-container>
+  </section>
 </template>
 
 <script setup lang="ts">
