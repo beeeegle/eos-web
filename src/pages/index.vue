@@ -176,10 +176,10 @@
               class="pa-6 text-center"
               style="background: linear-gradient(135deg, #8a84ff 45%, #fafdff 100%)"
             >
-              <div class="text-h5 font-weight-bold logo-text" style="color: #fafdff; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div class="text-h5 font-weight-bold logo-text" style="color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.15);">
                 Self Whitening
               </div>
-              <div class="text-caption tracking-widest text-white opacity-9 text-blue-darken-3">Medical Grade Gel</div>
+              <div class="text-caption tracking-widest text-white font-weight-bold opacity-80">Medical Grade Gel</div>
             </v-sheet>
 
             <v-card-text class="pa-0">
