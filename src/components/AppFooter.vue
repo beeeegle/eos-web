@@ -1,7 +1,7 @@
 <template>
   <v-footer class="bg-navy pt-16 pb-8">
     <v-container>
-      <v-row justify="center" align="center" class="text-center">
+      <v-row align="center" class="text-center" justify="center">
         <v-col cols="12">
           <div class="logo-text text-h4 text-white mb-2 tracking-widest">Eos</div>
           <div class="text-caption text-grey-lighten-1 mb-8 tracking-widest">TOTAL BEAUTY SALON</div>
@@ -18,13 +18,10 @@
           </div>
 
           <div class="mb-10 text-caption d-flex justify-center flex-wrap">
-            <a href="#menu" class="footer-link mx-4">MENU</a>
-            <a href="#price" class="footer-link mx-4">PRICE</a>
-            <a href="#access" class="footer-link mx-4">ACCESS</a>
-            <a href="#" class="footer-link mx-4">PRIVACY POLICY</a>
+            <a class="footer-link mx-4" href="#">PRIVACY POLICY</a>
           </div>
 
-          <v-divider class="mb-8 opacity-20" color="white"></v-divider>
+          <v-divider class="mb-8 opacity-20" color="white" />
 
           <p class="text-caption text-grey-lighten-1 tracking-widest">
             &copy; 2026 Eos Total Beauty. All Rights Reserved.
