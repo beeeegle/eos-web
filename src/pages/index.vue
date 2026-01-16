@@ -57,64 +57,158 @@
 
   <!-- Price List Section -->
   <section id="price" class="py-16">
-    <v-container class="py-16 bg-light-grad" fluid>
-      <v-container>
-        <v-row class="mb-12" justify="center">
-          <v-col class="text-center" cols="12">
-            <h2 class="section-title logo-text text-uppercase">Price List</h2>
-            <v-divider class="mx-auto mt-n4 mb-6" color="primary-blue" thickness="2" width="40" />
-            <p class="text-subtitle-1 text-grey-darken-2 tracking-widest">極上のケアを、明快な価格で</p>
-          </v-col>
-        </v-row>
+    <v-container id="price" class="py-16 bg-light-grad">
+      <v-row class="mb-10" justify="center">
+        <v-col class="text-center" cols="12">
+          <h2 class="section-title logo-text text-uppercase">Price List</h2>
+          <p class="text-subtitle-1 text-grey-darken-2 tracking-widest mt-n4">
+            ご利用時間・属性に合わせた最適なプラン
+          </p>
+        </v-col>
+      </v-row>
 
-        <v-row>
-          <v-col v-for="(plan, index) in pricePlans" :key="index" cols="12" md="4">
-            <v-card
-              class="menu-card mx-auto h-100 d-flex flex-column border-0"
-              elevation="10"
+      <v-tabs
+        v-model="activeMachine"
+        align-tabs="center"
+        class="mb-8"
+        color="primary-blue"
+      >
+        <v-tab value="tanning">Sun tanning</v-tab>
+        <v-tab value="collagen">Collagen</v-tab>
+        <v-tab value="whitening">Whitening</v-tab>
+      </v-tabs>
+
+      <v-window v-model="activeMachine">
+        <v-window-item value="tanning">
+          <v-card class="price-card mx-auto overflow-hidden" elevation="10" max-width="900">
+            <v-sheet
+              class="pa-6 text-center"
+              style="background: linear-gradient(135deg, #5c7cfa 0%, #f8faff 100%)"
             >
-              <v-sheet
-                class="grad-btn pa-8 text-center"
-                style="min-height: 140px; display: flex; flex-direction: column; justify-content: center;"
-              >
-                <div class="logo-text text-h5 font-weight-bold mb-1">{{ plan.title }}</div>
-                <div class="text-caption opacity-80 tracking-widest">{{ plan.subtitle }}</div>
-              </v-sheet>
+              <div class="text-h5 font-weight-bold logo-text" style="color: #1a2a44;">Sun tanning</div>
+              <div class="text-caption tracking-widest text-blue-darken-3">Ultra Class Tanning Machine</div>
+            </v-sheet>
 
-              <v-card-text class="pa-8 text-center flex-grow-1">
-                <div class="mb-6">
-                  <span class="text-h4 font-weight-bold" style="color: #3a506b;">
-                    ¥{{ plan.price.toLocaleString() }}
-                  </span>
-                  <span class="text-body-2 text-grey-darken-1"> / {{ plan.unit }}</span>
-                </div>
+            <v-card-text class="pa-0">
+              <v-table class="price-table">
+                <thead>
+                  <tr>
+                    <th class="text-center bg-grey-lighten-4">時間</th>
+                    <th class="text-center">男性</th>
+                    <th class="text-center">女性</th>
+                    <th class="text-center">学生</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in tanning" :key="row.time">
+                    <td class="text-center font-weight-bold bg-grey-lighten-4 py-4">
+                      <div class="text-h6">{{ row.time }}分</div>
+                      <div class="text-caption text-primary-pink font-weight-bold">VIPメンバー</div>
+                    </td>
 
-                <v-divider class="mb-6" />
+                    <td class="text-center">
+                      <div class="text-body-1 text-grey-darken-1">¥{{ row.male.normal }}</div>
+                      <div class="text-h6 text-primary-pink font-weight-bold">
+                        {{ row.male.vip === '-' ? '-' : '¥' + row.male.vip }}
+                      </div>
+                    </td>
 
-                <v-list class="text-left bg-transparent" density="compact">
-                  <v-list-item v-for="(feature, fIndex) in plan.features" :key="fIndex" class="px-0">
-                    <template #prepend>
-                      <v-icon class="mr-2" color="#5c7cfa" icon="mdi-check-circle-outline" size="small" />
-                    </template>
-                    <v-list-item-title class="text-body-2 text-grey-darken-3">{{ feature }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-card-text>
+                    <td class="text-center">
+                      <div class="text-body-1 text-grey-darken-1">¥{{ row.female.normal }}</div>
+                      <div class="text-h6 text-primary-pink font-weight-bold">¥{{ row.female.vip }}</div>
+                    </td>
 
-              <v-card-actions class="pa-8 pt-0">
-                <v-btn
-                  block
-                  class="grad-btn-lg rounded-pill font-weight-bold"
-                  elevation="2"
-                  height="54"
-                >
-                  RESERVE
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
+                    <td class="text-center">
+                      <div class="text-body-1 text-grey-darken-1">¥{{ row.student.normal }}</div>
+                      <div class="text-h6 text-primary-pink font-weight-bold">¥{{ row.student.vip }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </v-card-text>
+
+            <v-divider />
+
+            <v-card-actions class="pa-8 justify-center flex-column">
+              <p class="text-caption text-grey-darken-1 mb-4">※価格はすべて税込表示です。VIPメンバーの詳細は店頭にてご確認ください。</p>
+              <v-btn class="grad-btn-lg rounded-pill px-12" height="54">RESERVE</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-window-item>
+        <v-window-item value="collagen">
+          <v-card class="price-card mx-auto overflow-hidden" elevation="10" max-width="900">
+            <v-sheet
+              class="pa-6 text-center"
+              style="background: linear-gradient(135deg, #f06595 0%, #fff5f8 100%)"
+            >
+              <div class="text-h5 font-weight-bold logo-text" style="color: #862e4c;">Collagen Machine</div>
+              <div class="text-caption tracking-widest text-pink-darken-3">Beauty Light Therapy</div>
+            </v-sheet>
+            <v-card-text class="pa-0">
+              <v-table class="price-table">
+                <thead>
+                  <tr>
+                    <th class="text-center bg-grey-lighten-4">メニュー</th>
+                    <th class="text-center">通常料金</th>
+                    <th class="text-center">VIPメンバー</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in collagenPrices" :key="row.name">
+                    <td class="text-center font-weight-bold bg-grey-lighten-4 py-4">
+                      <div class="text-body-1">{{ row.name }}</div>
+                      <div class="text-caption text-grey">{{ row.desc }}</div>
+                    </td>
+                    <td class="text-center text-body-1 text-grey-darken-1">¥{{ row.normal }}</td>
+                    <td class="text-center text-h6 text-primary-pink font-weight-bold">¥{{ row.vip }}</td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </v-card-text>
+            <v-card-actions class="pa-8 justify-center">
+              <v-btn class="grad-btn-lg rounded-pill px-12" height="54">RESERVE</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-window-item>
+        <v-window-item value="whitening">
+          <v-card class="price-card mx-auto overflow-hidden" elevation="10" max-width="900">
+            <v-sheet
+              class="pa-6 text-center"
+              style="background: linear-gradient(135deg, #8a84ff 45%, #fafdff 100%)"
+            >
+              <div class="text-h5 font-weight-bold logo-text" style="color: #fafdff; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                Self Whitening
+              </div>
+              <div class="text-caption tracking-widest text-white opacity-9 text-blue-darken-3">Medical Grade Gel</div>
+            </v-sheet>
+
+            <v-card-text class="pa-0">
+              <v-table class="price-table">
+                <thead>
+                  <tr>
+                    <th class="text-center bg-grey-lighten-4">コース</th>
+                    <th class="text-center">通常料金</th>
+                    <th class="text-center">VIPメンバー</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in whiteningPrices" :key="row.name">
+                    <td class="text-center font-weight-bold bg-grey-lighten-4 py-4">
+                      <div class="text-body-1">{{ row.name }}</div>
+                      <div class="text-caption text-grey">{{ row.desc }}</div>
+                    </td>
+                    <td class="text-center text-body-1 text-grey-darken-1">¥{{ row.normal }}</td>
+                    <td class="text-center text-h6 text-primary-pink font-weight-bold">¥{{ row.vip }}</td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </v-card-text>
+            <v-card-actions class="pa-8 justify-center">
+              <v-btn class="grad-btn-lg rounded-pill px-12" height="54">RESERVE</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-window-item>
+      </v-window>
     </v-container>
   </section>
 
@@ -175,7 +269,6 @@
           <v-col class="pa-0 pa-md-4" cols="12" md="7">
             <v-card class="map-container rounded-xl overflow-hidden" elevation="12">
               <iframe
-                allowfullscreen=""
                 height="450"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -274,37 +367,44 @@
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue' // この行が必要です
+  const activeMachine = ref('matrix')
+
   const menuItems = [
     { title: '日焼けマシン', desc: '最新のタンニングマシンで健康的な小麦肌へ', image: new URL('@/assets/images/menu_1.png', import.meta.url).href },
     { title: 'コラーゲンマシン', desc: '全身光エステで潤いとハリをチャージ', image: new URL('@/assets/images/menu_2.png', import.meta.url).href },
     { title: 'ホワイトニング', desc: '自信の持てる白い歯へ。痛くないセルフケア', image: new URL('@/assets/images/menu_3.png', import.meta.url).href, comingSoon: true },
     { title: 'シャワー完備', desc: '高級感のあるパウダールームを完備', image: new URL('@/assets/images/facility_1.png', import.meta.url).href },
   ]
-  const pricePlans = [
+  // 画像のデータを反映
+  const tanning = [
     {
-      title: 'Tanning',
-      subtitle: '日焼けマシン',
-      price: 3300,
-      unit: '30分',
-      color: 'orange-darken-3',
-      features: ['最新のハイパワーマシン', 'シャワー利用込み', 'タオル・アメニティ無料'],
+      time: 15,
+      male: { normal: '3,930', vip: '-' },
+      female: { normal: '3,430', vip: '2,680' },
+      student: { normal: '2,940', vip: '2,190' },
     },
     {
-      title: 'Collagen',
-      subtitle: 'コラーゲンマシン',
-      price: 4400,
-      unit: '30分',
-      color: 'pink-lighten-2',
-      features: ['全身光エステ', '美肌保湿ケア', 'リラックス効果'],
+      time: 25,
+      male: { normal: '4,590', vip: '3,340' },
+      female: { normal: '4,090', vip: '2,840' },
+      student: { normal: '3,600', vip: '2,350' },
     },
     {
-      title: 'Whitening',
-      subtitle: 'ホワイトニング',
-      price: 3500,
-      unit: '1回',
-      color: 'cyan-darken-1',
-      features: ['セルフホワイトニング', '痛みなし', '自然な白さへ'],
+      time: 35,
+      male: { normal: '5,250', vip: '4,000' },
+      female: { normal: '4,750', vip: '3,500' },
+      student: { normal: '4,260', vip: '3,010' },
     },
+  ]
+  const collagenPrices = [
+    { name: 'ベーシック 30分', desc: 'まずはお試し', normal: '4,400', vip: '3,300' },
+    { name: '集中ケア 45分', desc: 'しっかり美肌効果', normal: '6,600', vip: '4,950' }
+  ]
+  const whiteningPrices = [
+    { name: '初回体験', desc: 'カウンセリング込', normal: '3,500', vip: '2,500' },
+    { name: '通常 1セット', desc: '8分×2回照射', normal: '4,900', vip: '3,900' },
+    { name: '回数券 5回', desc: '1回あたりお得', normal: '22,000', vip: '18,000' }
   ]
 </script>
 
@@ -401,6 +501,12 @@ $grad-sub: linear-gradient(45deg, $primary-blue, $primary-pink)
     transform: translateY(-10px)
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important
 
+.price-card
+  border-radius: 16px !important
+  overflow: hidden
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)
+  background: white
+
 .coming-soon-overlay
   position: absolute
   inset: 0
@@ -420,4 +526,26 @@ $grad-sub: linear-gradient(45deg, $primary-blue, $primary-pink)
 
   &:hover
     filter: grayscale(0) contrast(1)
+
+.price-table
+  th
+    font-weight: bold !important
+    color: #3a506b !important
+  td
+    border-bottom: 1px solid #f0f0f0
+    transition: background 0.2s
+  tr:hover td
+    background-color: rgba($primary-blue, 0.02)
+
+.text-primary-pink
+  color: $primary-pink !important
+
+// モバイル対応：表が横に長くなるので、必要に応じてスクロールさせる
+@media (max-width: 600px)
+  .price-table
+    display: block
+    overflow-x: auto
+    white-space: nowrap
+.v-window
+  padding-bottom: 10px
 </style>
