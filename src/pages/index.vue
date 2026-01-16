@@ -183,6 +183,88 @@
       </v-row>
     </v-container>
   </v-container>
+
+  <v-container id="contact" class="py-16 bg-light-grad" fluid>
+    <v-container>
+      <v-row>
+        <v-col class="d-flex flex-column justify-center pa-8" cols="12" md="5">
+          <h2 class="section-title logo-text text-uppercase mb-4">Contact</h2>
+          <p class="text-h5 font-weight-bold mb-4" style="color: #3a506b;">
+            光を纏う準備は、<br>できていますか？
+          </p>
+          <p class="text-body-2 text-grey-darken-2 mb-6 tracking-widest leading-loose">
+            サービスに関するご質問や、<br>
+            取材のご依頼、提携のご相談など、<br>
+            お気軽にお問い合わせください。
+          </p>
+          <div class="d-flex align-center text-caption text-grey">
+            <v-icon class="mr-2" icon="mdi-information-outline" />
+            通常2営業日以内にご返信いたします。
+          </div>
+        </v-col>
+
+        <!-- Contact Form -->
+        <v-col cols="12" md="7">
+          <v-card class="pa-8 rounded-xl border-0" elevation="10">
+            <v-form ref="form">
+              <v-row gutter="20">
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    class="mb-4"
+                    color="primary-blue"
+                    hide-details="auto"
+                    label="Name"
+                    placeholder="お名前"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    class="mb-4"
+                    color="primary-blue"
+                    hide-details="auto"
+                    label="Email"
+                    placeholder="メールアドレス"
+                    variant="outlined"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-select
+                    class="mb-4"
+                    color="primary-blue"
+                    hide-details="auto"
+                    :items="['ご予約について', 'メニューに関するご質問', '取材・その他']"
+                    label="Subject"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="12">
+                  <v-textarea
+                    class="mb-6"
+                    color="primary-blue"
+                    hide-details="auto"
+                    label="Message"
+                    placeholder="お問い合わせ内容をご入力ください"
+                    rows="4"
+                    variant="outlined"
+                  />
+                </v-col>
+                <v-col cols="12">
+                  <v-btn
+                    block
+                    class="grad-btn-lg rounded-pill font-weight-bold"
+                    height="60"
+                  >
+                    SEND MESSAGE
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-container>
 </template>
 
 <script setup lang="ts">
@@ -190,7 +272,7 @@
     { title: '日焼けマシン', desc: '最新のタンニングマシンで健康的な小麦肌へ', image: new URL('@/assets/images/menu_1.png', import.meta.url).href },
     { title: 'コラーゲンマシン', desc: '全身光エステで潤いとハリをチャージ', image: new URL('@/assets/images/menu_2.png', import.meta.url).href },
     { title: 'ホワイトニング', desc: '自信の持てる白い歯へ。痛くないセルフケア', image: new URL('@/assets/images/menu_3.png', import.meta.url).href, comingSoon: true },
-    { title: 'シャワー完備', desc: '高級感のあるパウダールームを完備', image: new URL('@/assets/images/facility_1.png', import.meta.url).href }
+    { title: 'シャワー完備', desc: '高級感のあるパウダールームを完備', image: new URL('@/assets/images/facility_1.png', import.meta.url).href },
   ]
   const pricePlans = [
     {
