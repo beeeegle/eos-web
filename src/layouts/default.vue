@@ -1,19 +1,19 @@
 <template>
-  <v-app v-scroll="onScroll">
+  <v-app v-scroll="onScroll" class="eos-app">
     <app-header />
 
     <v-main>
-      <v-container class="px-3 px-md-4 py-4 responsive-container">
+      <v-container class="pa-0" fluid>
         <router-view />
       </v-container>
     </v-main>
+
     <v-fade-transition>
       <v-btn
         v-if="fab"
-        class="back-to-top-btn grad-btn"
-        elevation="8"
+        class="back-to-top-btn"
+        elevation="12"
         icon="mdi-chevron-up"
-        location="bottom right"
         position="fixed"
         size="large"
         @click="toTop"
@@ -29,9 +29,7 @@
 
   const fab = ref(false)
 
-  // スクロール検知
   function onScroll () {
-    // windowオブジェクトが存在することを確認
     const top = window.scrollY || document.documentElement.scrollTop
     fab.value = top > 300
   }
@@ -44,68 +42,93 @@
   }
 </script>
 
-<style scoped lang="sass">
-// ==========================================
-// 1. Variables (変数)
-// ==========================================
-$primary-blue: #5c7cfa
-$primary-pink: #f06595
-$grad-main: linear-gradient(135deg, rgba($primary-blue, 0.9) 0%, rgba($primary-pink, 0.9) 100%)
-$grad-hover: linear-gradient(135deg, $primary-blue 0%, $primary-pink 100%)
+<style lang="sass">
+/* scopedを外し、グローバルスタイルとして定義します */
 
 // ==========================================
-// 2. Global Layout Helpers (レイアウト補助)
+// 1. Luxury Midnight Variables
 // ==========================================
-// ページ全体での横揺れ・はみ出しを防止
-:deep(html), :deep(body)
-  overflow-x: hidden !important
-  width: 100%
-  position: relative
-
-.v-application
-  overflow-x: hidden !important
-
-main
-  padding-top: 0 !important
-
-.responsive-container
-  max-width: 1200px
-  margin: 0 auto
+$luxury-black: #050505
+$deep-offset: #0a0a0a
+$primary-gold: #c5a059
 
 // ==========================================
-// 3. Back to Top Button (トップへ戻るボタン)
+// 2. Base Reset & Typography
 // ==========================================
+html, body
+  background-color: #000 !important // 下地の完全な黒
+  overflow-x: hidden
+  font-feature-settings: "palt"
+
+// ==========================================
+// 3. Eos App Deep Black Layout
+// ==========================================
+.eos-app.v-application
+  // 放射状グラデーションで「ただの黒」に奥行きを出す
+  background: radial-gradient(circle at 50% 50%, $deep-offset 0%, $luxury-black 100%) !important
+  color: #ffffff !important
+
+  // フィルムノイズテクスチャ（オーバーレイ）
+  &::before
+    content: ""
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+    opacity: 0.04
+    pointer-events: none
+    z-index: 1
+
+.v-application__wrap
+  background: transparent !important // Vuetifyのデフォルト白背景を透明化
+
+// ==========================================
+// 4. Global Components
+// ==========================================
+
+// セクションタイトル：金白グラデを標準化
+.section-title
+  font-family: 'Playfair Display', serif !important
+  font-size: clamp(2rem, 5vw, 2.8rem) !important
+  font-weight: 300 !important
+  letter-spacing: 0.3em !important
+  text-align: center
+  margin-bottom: 3rem
+  text-transform: uppercase
+  // 金白グラデーション
+  background: linear-gradient(135deg, #ffffff 0%, #f9f1d0 50%, $primary-gold 100%)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+
+// ページ上部へ戻るボタン
 .back-to-top-btn
-  position: fixed !important
-  bottom: 20px !important
-  right: 20px !important
+  bottom: 40px !important
+  right: 40px !important
   z-index: 9999 !important
-  background: $grad-main !important
-  color: white !important
-  border: 1px solid rgba(255, 255, 255, 0.3)
-  backdrop-filter: blur(4px)
-  animation: floating 3s ease-in-out infinite
-  transition: all 0.3s ease
+  background-color: rgba(0, 0, 0, 0.8) !important
+  backdrop-filter: blur(10px)
+  color: $primary-gold !important
+  border: 1px solid rgba($primary-gold, 0.5) !important
 
-  // ホバーエフェクト
   &:hover
-    transform: translateY(-5px) scale(1.1)
-    box-shadow: 0 10px 20px rgba($primary-pink, 0.4) !important
-    background: $grad-hover !important
-
-  // スマートフォン対応 (Responsive)
-  @media (max-width: 600px)
-    bottom: 16px !important
-    right: 16px !important
-    width: 48px !important
-    height: 48px !important
+    transform: translateY(-5px)
+    border-color: $primary-gold !important
+    box-shadow: 0 0 20px rgba($primary-gold, 0.3) !important
 
 // ==========================================
-// 4. Animations (アニメーション)
+// 5. Utility Classes
 // ==========================================
-@keyframes floating
-  0%, 100%
-    transform: translateY(0px)
-  50%
-    transform: translateY(-10px)
+.bg-navy-black
+  background-color: #000000 !important
+
+.bg-deep-navy
+  background-color: $deep-offset !important
+
+.price-card-luxury
+  background: rgba(255, 255, 255, 0.03) !important
+  border: 1px solid rgba($primary-gold, 0.2) !important
+  backdrop-filter: blur(20px)
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important
 </style>

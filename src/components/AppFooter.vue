@@ -3,28 +3,38 @@
     <v-container>
       <v-row align="center" class="text-center" justify="center">
         <v-col cols="12">
-          <div class="logo-text text-h4 text-white mb-2 tracking-widest">Eos</div>
-          <div class="text-caption text-grey-lighten-1 mb-8 tracking-widest">TOTAL BEAUTY SALON</div>
+          <div class="logo-text text-h4 mb-2 tracking-widest text-primary-gold">Eos</div>
+          <div class="text-caption text-grey-lighten-1 mb-10 tracking-widest">
+            HIGH-END SELF CONDITIONING
+          </div>
 
           <div class="mb-10">
             <v-btn
-              v-for="icon in ['mdi-instagram', 'mdi-twitter', 'mdi-facebook', 'mdi-line']"
-              :key="icon"
-              class="mx-2 social-icon"
-              color="white"
-              :icon="icon"
+              v-for="sns in snsInfo"
+              :key="sns.name"
+              class="mx-3 social-icon"
+              color="primary-gold"
+              :href="sns.url"
+              :icon="sns.icon"
               variant="text"
             />
           </div>
 
-          <div class="mb-10 text-caption d-flex justify-center flex-wrap">
-            <a class="footer-link mx-4" href="#">PRIVACY POLICY</a>
+          <div class="text-caption d-flex justify-center flex-wrap">
+            <a
+              v-for="about in abouts"
+              :key="about?.name"
+              class="footer-link mx-6"
+              :href="about?.url"
+            >
+              {{ about?.name }}
+            </a>
           </div>
 
-          <v-divider class="mb-8 opacity-20" color="white" />
+          <v-divider class="mb-8 footer-divider" />
 
-          <p class="text-caption text-grey-lighten-1 tracking-widest">
-            &copy; 2026 Eos Total Beauty. All Rights Reserved.
+          <p class="text-caption text-grey-darken-1 tracking-widest uppercase">
+            &copy; 2026 Eos Luxury Conditioning. All Rights Reserved.
           </p>
         </v-col>
       </v-row>
@@ -32,36 +42,59 @@
   </v-footer>
 </template>
 
+<script setup lang="ts">
+  const snsInfo = [
+    { name: 'Instagram', icon: 'mdi-instagram', url: 'https://www.instagram.com/eos_hiratsuka' },
+  ]
+  const abouts = [
+    { name: 'PRIVACY POLICY', url: '#' },
+    { name: 'TERMS OF SERVICE', url: '#' },,
+  ]
+</script>
+
 <style scoped lang="sass">
-// 先ほどのリファクタリング変数を活用
-$primary-pink: #f06595
-$navy: #1a2a44
+// 全体で定義したラグジュアリー変数を適用
+$navy: #0f172a
+$primary-gold: #c5a059
 
 .bg-navy
-  background-color: $navy
-  border-top: 1px solid rgba(255, 255, 255, 0.05)
+  background-color: $navy !important
+  border-top: 1px solid rgba($primary-gold, 0.2) // わずかにゴールドのラインを上部に入れる
 
 .logo-text
   font-family: 'Playfair Display', serif
-  letter-spacing: 0.2em
+  letter-spacing: 0.3em
+  // ゴールドの質感を文字にも
+  background: linear-gradient(to right, #ffffff, $primary-gold)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
 
 .social-icon
-  transition: transform 0.3s ease, color 0.3s ease
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)
   &:hover
-    color: $primary-pink !important
-    transform: translateY(-3px)
+    color: white !important
+    transform: translateY(-5px) scale(1.1)
+    filter: drop-shadow(0 0 8px rgba($primary-gold, 0.5))
 
 .footer-link
-  color: rgba(255, 255, 255, 0.6)
+  color: rgba(255, 255, 255, 0.5)
   text-decoration: none
-  letter-spacing: 0.1em
-  transition: color 0.3s ease
+  font-weight: 500
+  letter-spacing: 0.2em
+  font-size: 0.7rem
+  transition: all 0.3s ease
   &:hover
-    color: white
+    color: $primary-gold
+    letter-spacing: 0.25em // ホバーで少し広がる演出
 
-.opacity-20
-  opacity: 0.2
+.footer-divider
+  border-color: rgba($primary-gold, 0.1) !important
+  max-width: 600px
+  margin: 0 auto
 
 .tracking-widest
-  letter-spacing: 0.2em
+  letter-spacing: 0.3em
+
+button
+  color: aliceblue
 </style>
