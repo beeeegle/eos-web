@@ -1,7 +1,7 @@
 <template>
   <v-app-bar class="header-glass" flat height="80">
     <v-container class="d-flex align-center">
-      <v-toolbar-title class="logo-text text-h4 font-weight-bold">
+      <v-toolbar-title class="logo-text text-h4">
         <span class="logo-gradient">Eos</span>
       </v-toolbar-title>
 
@@ -20,7 +20,7 @@
       </div>
 
       <v-btn
-        class="grad-btn-header ml-4 rounded-pill font-weight-bold px-6 hidden-sm-and-down"
+        class="grad-btn-header ml-6 px-8 hidden-sm-and-down"
         @click="scrollToSection('#contact')"
       >
         RESERVE
@@ -28,7 +28,7 @@
 
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
-        color="primary-blue"
+        color="navy"
         @click="drawer = !drawer"
       />
     </v-container>
@@ -39,25 +39,22 @@
     class="sp-nav-drawer"
     fixed
     location="right"
-    :scrim="true"
-    style="z-index: 9999 !important;"
     temporary
-    touchless
     width="300"
   >
-    <div class="d-flex flex-column pa-6 h-100">
-      <div class="d-flex justify-end mb-4">
-        <v-btn icon="mdi-close" variant="text" @click="drawer = false" />
+    <div class="d-flex flex-column pa-8 h-100">
+      <div class="d-flex justify-end mb-8">
+        <v-btn color="navy" icon="mdi-close" variant="text" @click="drawer = false" />
       </div>
 
       <v-list class="bg-transparent text-center">
         <v-list-item
           v-for="item in menuItems"
           :key="item.title"
-          class="mb-2"
+          class="mb-6"
           @click="handleSpNav(item.target)"
         >
-          <v-list-item-title class="logo-text text-h6 tracking-widest text-grey-darken-2">
+          <v-list-item-title class="logo-text text-h5 tracking-widest text-navy">
             {{ item.title }}
           </v-list-item-title>
         </v-list-item>
@@ -67,9 +64,8 @@
 
       <v-btn
         block
-        class="grad-btn-header rounded-pill font-weight-bold mb-6"
-        height="56"
-        style="max-height: 56px;"
+        class="grad-btn-header"
+        height="64"
         @click="handleSpNav('#contact')"
       >
         RESERVE
@@ -79,6 +75,7 @@
 </template>
 
 <script setup lang="ts">
+  // スクリプト部分は変更なし（機能維持）
   import { ref } from 'vue'
   import { useGoTo } from 'vuetify'
 
@@ -97,98 +94,83 @@
     goTo(target, {
       duration: 800,
       easing: 'easeInOutCubic',
-      offset: 30,
+      offset: -80, // ヘッダーの高さ分調整
     })
   }
-  // スマホ用：メニューを閉じてからスクロール
+
   function handleSpNav (target: string) {
     drawer.value = false
     setTimeout(() => {
       scrollToSection(target)
-    }, 300) // ドロワーが閉じるアニメーションを待つ
+    }, 350)
   }
 </script>
 
 <style scoped lang="sass">
-$primary-blue: #5c7cfa
-$primary-pink: #f06595
+// 変数の再定義（Sassファイルから読み込んでいる場合は不要）
+$navy: #0f172a
+$primary-gold: #c5a059
 
-// グラスモフィズム（すりガラス）の強化
 .header-glass
-  background: rgba(255, 255, 255, 0.7) !important
+  background: rgba(255, 255, 255, 0.8) !important
   backdrop-filter: blur(12px)
   -webkit-backdrop-filter: blur(12px)
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3)
+  border-bottom: 1px solid rgba($navy, 0.05)
   position: sticky !important
 
 .logo-text
   font-family: 'Playfair Display', serif
-  letter-spacing: 0.15em
+  letter-spacing: 0.1em
+  color: $navy
 
   .logo-gradient
-  background: linear-gradient(135deg, $primary-blue, $primary-pink)
-  -webkit-background-clip: text
-  -webkit-text-fill-color: transparent
-  display: inline-block
+    // ピンクを抜き、白〜ゴールドの神々しいグラデーションへ
+    background: linear-gradient(135deg, $navy 0%, $primary-gold 100%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    display: inline-block
 
-// ナビゲーションの装飾
 .nav-link
-  letter-spacing: 0.15em
-  font-size: 0.85rem
-  color: #3a506b !important
+  letter-spacing: 0.2em
+  font-size: 0.75rem
+  font-weight: 600
+  color: $navy !important
   position: relative
-  transition: color 0.3s ease
 
   &::after
     content: ''
     position: absolute
-    bottom: 8px
+    bottom: 12px
     left: 50%
     width: 0
     height: 1px
-    background: linear-gradient(90deg, $primary-blue, $primary-pink)
+    background: $primary-gold
     transition: all 0.3s ease
     transform: translateX(-50%)
 
   &:hover
     background: transparent !important
-    color: $primary-blue !important
+    color: $primary-gold !important
     &::after
-      width: 60%
+      width: 40%
 
-// ボタンをヘッダー用に微調整
 .grad-btn-header
-  background: linear-gradient(45deg, $primary-blue, $primary-pink) !important
+  background: $navy !important // シンプルにネイビー背景
   color: white !important
-  letter-spacing: 0.1em
-  transition: transform 0.2s ease
+  letter-spacing: 0.2em
+  font-size: 0.8rem
+  border-radius: 4px // Pillからシャープな角丸へ
+  transition: all 0.3s ease
 
   &:hover
-    transform: scale(1.05)
-    box-shadow: 0 4px 15px rgba($primary-pink, 0.4) !important
+    background: $primary-gold !important
+    transform: translateY(-2px)
+    box-shadow: 0 4px 12px rgba($primary-gold, 0.3)
 
-// スマホ用ドロワーの背景
 .sp-nav-drawer
-  background: rgba(255, 255, 255, 0.8) !important
+  background: rgba(255, 255, 255, 0.95) !important
   backdrop-filter: blur(20px)
-  border-left: 1px solid rgba($primary-blue, 0.1)
-
-.logo-gradient
-  background: linear-gradient(135deg, $primary-blue, $primary-pink)
-  -webkit-background-clip: text
-  -webkit-text-fill-color: transparent
-  display: inline-block
 
 .tracking-widest
   letter-spacing: 0.3em
-
-// 既存の grad-btn-header をドロワー内でも使い回す
-.grad-btn-header
-  background: linear-gradient(45deg, $primary-blue, $primary-pink) !important
-  color: white !important
-  letter-spacing: 0.1em
-
-.sp-nav-drawer
-  top: 0 !important
-  height: 100vh !important
 </style>
