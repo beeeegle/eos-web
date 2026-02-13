@@ -155,10 +155,12 @@
                       <div class="text-h5 mb-1">{{ row.time }} min</div>
                       <div class="text-caption text-primary-gold font-weight-bold">VIP MEMBER</div>
                     </td>
-                    <td v-for="cat in ['male', 'female', 'student']" :key="cat" class="text-center border-left">
-                      <div class="text-body-2 text-grey-darken-1 mb-1">Standard: ¥{{ row[cat].normal }}</div>
+                    <td v-for="cat in (['male', 'female', 'student'] as const)" :key="cat" class="text-center border-left">
+                      <div class="text-body-2 text-grey-darken-1 mb-1">
+                        Standard: ¥{{ (row as any)[cat].normal }}
+                      </div>
                       <div class="text-h5 font-weight-bold text-navy">
-                        {{ row[cat].vip === '-' ? '-' : '¥' + row[cat].vip }}
+                        {{ (row as any)[cat].vip === '-' ? '-' : '¥' + (row as any)[cat].vip }}
                       </div>
                     </td>
                   </tr>
@@ -199,10 +201,12 @@
                       <div class="text-h5 mb-1">{{ row.time }} min</div>
                       <div class="text-caption text-primary-gold font-weight-bold">VIP MEMBER</div>
                     </td>
-                    <td v-for="cat in ['male', 'female', 'student']" :key="cat" class="text-center border-left">
-                      <div class="text-body-2 text-grey-darken-1 mb-1">Standard: ¥{{ row[cat].normal }}</div>
+                    <td v-for="cat in (['male', 'female', 'student'] as const)" :key="cat" class="text-center border-left">
+                      <div class="text-body-2 text-grey-darken-1 mb-1">
+                        Standard: ¥{{ (row as any)[cat].normal }}
+                      </div>
                       <div class="text-h5 font-weight-bold text-navy">
-                        {{ row[cat].vip === '-' ? '-' : '¥' + row[cat].vip }}
+                        {{ (row as any)[cat].vip === '-' ? '-' : '¥' + (row as any)[cat].vip }}
                       </div>
                     </td>
                   </tr>
@@ -285,7 +289,7 @@
               <p class="text-caption tracking-widest opacity-60 mb-8 text-uppercase">
                 High-End Conditioning Salon
               </p>
-              <v-list bg-transparent class="text-white pl-4" density="relaxed">
+              <v-list bg-transparent class="text-white pl-4" density="default">
                 <v-list-item class="px-0 mb-6 align-start">
                   <template #prepend>
                     <v-icon class="mr-4 mt-1" color="primary-gold" icon="mdi-map-marker-outline" size="large" />
